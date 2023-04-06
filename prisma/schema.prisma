@@ -22,7 +22,7 @@ model Product {
   name        String
   price       Float
   imageURL    String
-  priceRebate String?
+  priceRebate Float?
 
   category   Category @relation(fields: [categoryID], references: [id])
   categoryID String
