@@ -10,6 +10,8 @@ class ProductController {
             categoryID,
             priceRebate, } = req.body
 
+        if (!imageURL || !name || !price || !categoryID) throw new Error('Envia todos os valores para criar um produto')
+
         const product = await prisma.product.create({
             data: {
                 imageURL,

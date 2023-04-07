@@ -5,6 +5,10 @@ class CategoryController {
     async store(req: Request, res: Response) {
         const name = req.body.name as string
 
+        if (!name) {
+            throw new Error('Envie o nome da categoria')
+        }
+
         const category = await prisma.category.create({
             data: {
                 name,
@@ -14,12 +18,10 @@ class CategoryController {
     }
 
     async index(req: Request, res: Response) {
-        const name = req.body.name as string
-
         const category = await prisma.category.findMany()
         return res.json(category)
     }
-    
+
 }
 
 export const categoryController = new CategoryController()

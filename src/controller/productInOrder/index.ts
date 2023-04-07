@@ -5,6 +5,9 @@ class ProductInOrderController {
     async store(req: Request, res: Response) {
         const { quantity, productID, orderID } = req.body
 
+        if (!quantity || !productID || !orderID) throw new Error('Envie todos os campos para adicionar um produto no pedidio')
+
+
         const productInOrder = await prisma.productInOrder.create({
             data: {
                 quantity,

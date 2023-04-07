@@ -22,7 +22,7 @@ class OrderController {
                 totalPrice += p.product.price * p.quantity
             })
 
-            return {totalPrice, ...order}
+            return { totalPrice, ...order }
         })
 
 
@@ -41,6 +41,12 @@ class OrderController {
 
     async update(req: Request, res: Response) {
         const { status, id } = req.body
+
+        if (!status) throw new Error('Envie um status válido (openned | closed)')
+
+        const orderExists = await prisma.order.findFirst({ where: { id } })
+
+        if (!orderExists) throw new Error('ID do pedido inválido')
 
         const order = await prisma.order.update({
             data: {
