@@ -30,7 +30,6 @@ class ProductController {
             }
         })
 
-
         return res.json(products)
     }
 

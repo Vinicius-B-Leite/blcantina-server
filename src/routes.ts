@@ -5,7 +5,8 @@ import { productController } from "./controller/product";
 
 const routes = Router()
 
-routes.get('/order', orderController.show)
+routes.get('/order', orderController.index)
+routes.post('/order', orderController.store)
 
 routes.post('/product', productController.store)
 routes.get('/product', productController.index)
