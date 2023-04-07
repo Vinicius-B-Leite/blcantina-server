@@ -18,7 +18,7 @@ model Category {
 }
 
 model Product {
-  id          String  @id @default(uuid())
+  id          String @id @default(uuid())
   name        String
   price       Float
   imageURL    String
@@ -36,14 +36,13 @@ model ProductInOrder {
 
   product   Product @relation(fields: [productID], references: [id])
   productID String
-  
+
   order   Order  @relation(fields: [orderID], references: [id])
   orderID String
 }
 
 model Order {
-  id         String @id @default(uuid())
-  totalPrice Float
-
+  id             String           @id @default(uuid())
+  status         String   @default("opened")
   productInOrder ProductInOrder[]
 }

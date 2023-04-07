@@ -17,27 +17,15 @@ class OrderController {
 
     async store(req: Request, res: Response) {
         const order = await prisma.order.create({
-            data: {
-                totalPrice: 0
+            data:{
+                status: 'openned'
             }
         })
 
         return res.json(order)
     }
 
-    async update(req: Request, res: Response) {
-        const { totalPrice, id } = req.body
-        const order = await prisma.order.update({
-            data: {
-                totalPrice
-            },
-            where: {
-                id
-            }
-        })
-
-        return res.json(order)
-    }
+    
 }
 
 export const orderController = new OrderController()
