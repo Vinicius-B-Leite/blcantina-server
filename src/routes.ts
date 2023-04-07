@@ -8,6 +8,7 @@ const routes = Router()
 
 routes.get('/order', orderController.index)
 routes.post('/order', orderController.store)
+routes.put('/order', orderController.update)
 
 routes.post('/product', productController.store)
 routes.get('/product', productController.index)
